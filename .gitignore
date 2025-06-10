@@ -1,4 +1,4 @@
-.terraform/
+virtual_network/.terraform
 virtual_network/terraform.tfstate.backup
 virtual_network/terraform.tfstate
 virtual_network/.terraform.lock.hcl
