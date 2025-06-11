@@ -175,7 +175,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   location            = azurerm_resource_group.example_2.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  admin_password      = "ChangeMe123!" 
+  admin_password      = "ChangeMe123!"
 
   network_interface_ids = [
     azurerm_network_interface.linux_nic.id,
