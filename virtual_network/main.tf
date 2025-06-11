@@ -1,10 +1,10 @@
 #PROVIDERS
 terraform {
   required_version = ">=1.0"
-  
+
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "4.29.0"
     }
   }
@@ -67,18 +67,18 @@ resource "azurerm_virtual_network" "example_2" {
 
 #SUBNETS
 resource "azurerm_subnet" "subnet1" {
-  name                = "subnet1"
-  resource_group_name = azurerm_resource_group.example_1.name
+  name                 = "subnet1"
+  resource_group_name  = azurerm_resource_group.example_1.name
   virtual_network_name = azurerm_virtual_network.example_1.name
-  address_prefixes = ["10.0.1.0/24"]
-  }
+  address_prefixes     = ["10.0.1.0/24"]
+}
 
-  resource "azurerm_subnet" "subnet2" {
-  name                = "subnet2"
-  resource_group_name = azurerm_resource_group.example_2.name
+resource "azurerm_subnet" "subnet2" {
+  name                 = "subnet2"
+  resource_group_name  = azurerm_resource_group.example_2.name
   virtual_network_name = azurerm_virtual_network.example_2.name
-  address_prefixes = ["10.1.2.0/24"]
-  }
+  address_prefixes     = ["10.1.2.0/24"]
+}
 
 #NSG ASSOCIATIONS
 resource "azurerm_subnet_network_security_group_association" "example_1" {
@@ -131,7 +131,7 @@ resource "azurerm_network_interface" "linux_nic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet2.id
     private_ip_address_allocation = "Dynamic"
-     public_ip_address_id          = azurerm_public_ip.linux_public_ip.id
+    public_ip_address_id          = azurerm_public_ip.linux_public_ip.id
   }
 }
 
@@ -175,17 +175,18 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   location            = azurerm_resource_group.example_2.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
+  admin_password      = "ChangeMe123!"
 
   network_interface_ids = [
     azurerm_network_interface.linux_nic.id,
   ]
 
-  disable_password_authentication = true
+  disable_password_authentication = false
 
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("C:/Users/hp/.ssh/id_rsa.pub")
-  }
+  # admin_ssh_key {
+  #   username   = "adminuser"
+  #   public_key = file("C:/Users/hp/.ssh/id_rsa.pub")
+  # }
 
   os_disk {
     caching              = "ReadWrite"
