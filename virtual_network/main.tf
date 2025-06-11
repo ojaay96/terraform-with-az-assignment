@@ -96,7 +96,7 @@ resource "azurerm_public_ip" "windows_public_ip" {
   name                = "windows-public-ip"
   location            = azurerm_resource_group.example_1.location
   resource_group_name = azurerm_resource_group.example_1.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
   sku                 = "Standard"
 }
 
@@ -104,7 +104,7 @@ resource "azurerm_public_ip" "linux_public_ip" {
   name                = "linux-public-ip"
   location            = azurerm_resource_group.example_2.location
   resource_group_name = azurerm_resource_group.example_2.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
   sku                 = "Standard"
 }
 
@@ -117,7 +117,7 @@ resource "azurerm_network_interface" "windows_nic" {
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet1.id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Static"
     public_ip_address_id          = azurerm_public_ip.windows_public_ip.id
   }
 }
@@ -130,7 +130,7 @@ resource "azurerm_network_interface" "linux_nic" {
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet2.id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Static"
     public_ip_address_id          = azurerm_public_ip.linux_public_ip.id
   }
 }
