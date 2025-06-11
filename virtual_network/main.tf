@@ -117,7 +117,7 @@ resource "azurerm_network_interface" "windows_nic" {
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet1.id
-    private_ip_address_allocation = "Static"
+    private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.windows_public_ip.id
   }
 }
@@ -130,7 +130,7 @@ resource "azurerm_network_interface" "linux_nic" {
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet2.id
-    private_ip_address_allocation = "Static"
+    private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.linux_public_ip.id
   }
 }
