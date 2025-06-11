@@ -25,14 +25,18 @@ jobs:
         
     - name: Terraform Init
       run: terraform init
+      working-directory: virtual_network
 
     - name: Terraform Validate
       run: terraform validate
+      working-directory: virtual_network
 
     - name: Terraform Plan
       run: terraform plan -input=false
+      working-directory: virtual_network
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master'
       run: terraform apply -auto-approve
-      
+      working-directory: virtual_network
+
