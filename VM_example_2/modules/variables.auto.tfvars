@@ -1,0 +1,6 @@
+resource_group_name = "TEST_TERRAFORM"
+virtual_network_1 = "VNET_TEST"
+location = "east us"
+nsg = "NSG"
+subnet = "SUBNET_001"
+admin_password = "jaay"
