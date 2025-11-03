@@ -1,4 +1,4 @@
-name: Azure Terraform Workflow
+name: UPDATED Azure Terraform Workflow
 
 on: 
   workflow_dispatch: 
