@@ -43,7 +43,7 @@ resource "azurerm_network_security_group" "example_2" {
 resource "azurerm_network_security_rule" "allow-rdp" {
   name                        = "test123"
   priority                    = 100
-  direction                   = "Inbound"    
+  direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
