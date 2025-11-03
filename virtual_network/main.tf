@@ -40,6 +40,21 @@ resource "azurerm_network_security_group" "example_2" {
   resource_group_name = azurerm_resource_group.example_2.name
 }
 
+resource "azurerm_network_security_rule" "allow-rdp" {
+  name                        = "test123"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "3389"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.example_1.name
+  network_security_group_name = azurerm_network_security_group.example_1.name
+}
+
+
 #VIRTUAL NETWORKS
 resource "azurerm_virtual_network" "example_1" {
   name                = var.virtual_network_name1
